@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Container, Section, SectionHeading } from "./Section";
 
 type Evaluation = {
   title: string;
@@ -10,20 +11,14 @@ type Evaluation = {
 
 export default function TechEvaluations({ evaluations }: { evaluations: Evaluation[] }) {
   return (
-    <section id="tech-evaluations" className="relative py-24 overflow-hidden">
-      <div className="absolute right-0 top-1/3 h-72 w-72 rounded-full bg-cyan-500/5 blur-[120px]" />
-      <div className="relative mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="mb-2 text-3xl font-bold">
-            <span className="gradient-text">Tech Evaluations & POCs</span>
-          </h2>
-          <p className="text-zinc-500">Evaluations I led before building—choosing the right tools</p>
-        </motion.div>
+    <Section id="tech-evaluations">
+      <div className="pointer-events-none absolute right-0 top-1/3 h-72 w-72 rounded-full bg-cyan-500/6 blur-[140px]" />
+      <Container className="relative z-10">
+        <SectionHeading
+          eyebrow="POCs"
+          title="Tech Evaluations"
+          subtitle="Short loops, measurable criteria, confident choices."
+        />
         <div className="grid gap-6 md:grid-cols-2">
           {evaluations.map((item, i) => (
             <motion.div
@@ -32,15 +27,16 @@ export default function TechEvaluations({ evaluations }: { evaluations: Evaluati
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 * i }}
-              className="glass rounded-xl p-6 transition-all hover:border-cyan-500/30"
+              whileHover={{ y: -4 }}
+              className="card rounded-3xl p-6 transition-all hover:shadow-[0_0_40px_rgba(34,211,238,0.10)]"
             >
               <h3 className="mb-3 font-semibold text-cyan-400">{item.title}</h3>
-              <p className="mb-2 text-sm text-zinc-300">{item.outcome}</p>
-              <p className="text-sm text-zinc-500">{item.learnings}</p>
+              <p className="mb-2 text-sm text-zinc-200/90">{item.outcome}</p>
+              <p className="text-sm text-zinc-300/70">{item.learnings}</p>
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

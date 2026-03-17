@@ -8,6 +8,7 @@
   --accent: #22d3ee;
   --accent-muted: #0891b2;
   --accent-glow: rgba(34, 211, 238, 0.4);
+  --ring: rgba(34, 211, 238, 0.35);
 }
 
 @theme inline {
@@ -123,6 +124,26 @@ body::after {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 6s ease infinite;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.card:hover {
+  border-color: rgba(34, 211, 238, 0.22);
 }
 
 .glow-border {

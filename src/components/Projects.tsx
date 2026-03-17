@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import TiltCard from "./TiltCard";
+import { Container, Section, SectionHeading } from "./Section";
 
 type Project = {
   name: string;
@@ -18,25 +19,14 @@ type Project = {
 
 export default function Projects({ projects }: { projects: Project[] }) {
   return (
-    <section id="projects" className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgba(34,211,238,0.03),transparent)]" />
-      <div className="relative mx-auto max-w-6xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-4 text-3xl font-bold"
-        >
-          <span className="gradient-text">Featured Projects</span>
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-zinc-500"
-        >
-          Building systems that scale
-        </motion.p>
+    <Section id="projects">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_55%_50%_at_50%_50%,rgba(34,211,238,0.04),transparent)]" />
+      <Container className="relative z-10">
+        <SectionHeading
+          eyebrow="Work"
+          title="Featured Projects"
+          subtitle="Real systems, real constraints, production-grade solutions."
+        />
         <div className="space-y-8">
           {projects.map((project, i) => (
             <motion.div
@@ -47,11 +37,11 @@ export default function Projects({ projects }: { projects: Project[] }) {
               transition={{ delay: 0.05 * i, duration: 0.5 }}
             >
               <TiltCard>
-                <div className="glass-strong glow-border group rounded-2xl p-8 transition-all hover:shadow-[0_0_40px_rgba(34,211,238,0.1)]">
+                <div className="card glow-border group rounded-3xl p-8 transition-all hover:shadow-[0_0_60px_rgba(34,211,238,0.12)]">
                   <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
                     <div>
                       <div className="mb-1 flex items-center gap-3">
-                        <h3 className="text-xl font-semibold text-zinc-100 group-hover:text-cyan-400 transition-colors">
+                        <h3 className="text-xl font-semibold text-zinc-100 group-hover:text-cyan-300 transition-colors">
                           {project.name}
                         </h3>
                         {project.featured && (
@@ -59,7 +49,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
                             initial={{ scale: 0 }}
                             whileInView={{ scale: 1 }}
                             viewport={{ once: true }}
-                            className="rounded-full bg-cyan-500/20 px-2.5 py-0.5 text-xs font-medium text-cyan-400 border border-cyan-500/30"
+                            className="rounded-full bg-cyan-500/15 px-3 py-1 text-xs font-semibold tracking-wide text-cyan-200 border border-cyan-500/25"
                           >
                             Featured
                           </motion.span>
@@ -67,13 +57,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
                       </div>
                       <p className="text-sm text-cyan-400/90">{project.tagline}</p>
                     </div>
-                    <span className="rounded-md border border-zinc-600 px-3 py-1 text-xs text-zinc-500">
+                    <span className="rounded-xl border border-zinc-700/70 bg-zinc-950/30 px-3 py-1 text-xs font-semibold text-zinc-400">
                       {project.role}
                     </span>
                   </div>
-                  <p className="mb-4 text-zinc-400 leading-relaxed">{project.description}</p>
+                  <p className="mb-4 text-zinc-300/90 leading-relaxed">{project.description}</p>
                   {project.impact && (
-                    <p className="mb-4 text-sm font-medium text-cyan-400/90">
+                    <p className="mb-5 text-sm font-semibold text-cyan-200/90">
                       Impact: {project.impact}
                     </p>
                   )}
@@ -85,16 +75,16 @@ export default function Projects({ projects }: { projects: Project[] }) {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.02 * j }}
-                        className="skill-tag rounded-md bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-400 border border-cyan-500/20"
+                        className="skill-tag rounded-xl bg-cyan-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-200 border border-cyan-500/20"
                       >
                         {t}
                       </motion.span>
                     ))}
                   </div>
-                  <p className="mb-4 text-sm text-zinc-500">
+                  <p className="mb-5 text-sm text-zinc-400/80">
                     {project.duration} · Team of {project.teamSize}
                   </p>
-                  <ul className="space-y-2 text-sm text-zinc-400">
+                  <ul className="space-y-2 text-sm text-zinc-300/80">
                     {project.highlights.map((h, j) => (
                       <motion.li
                         key={j}
@@ -104,7 +94,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
                         transition={{ delay: 0.03 * j }}
                         className="flex gap-2"
                       >
-                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-cyan-400" />
+                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-cyan-300" />
                         {h}
                       </motion.li>
                     ))}
@@ -114,7 +104,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }

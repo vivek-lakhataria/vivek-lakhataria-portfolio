@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Container, Section, SectionHeading } from "./Section";
 
 const skillCategories = [
   { title: "Backend", key: "backend", icon: "⚙️" },
@@ -13,21 +14,15 @@ const skillCategories = [
 
 export default function Skills({ skills }: { skills: Record<string, string[]> }) {
   return (
-    <section id="skills" className="relative py-24 overflow-hidden">
-      <div className="absolute top-0 right-0 h-96 w-96 rounded-full bg-cyan-500/5 blur-[150px]" />
-      <div className="absolute bottom-0 left-0 h-64 w-64 rounded-full bg-violet-500/5 blur-[120px]" />
-      <div className="relative mx-auto max-w-6xl px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="mb-2 text-3xl font-bold">
-            <span className="gradient-text">Skills</span>
-          </h2>
-          <p className="text-zinc-500">Technologies & practices I work with daily</p>
-        </motion.div>
+    <Section id="skills">
+      <div className="pointer-events-none absolute top-0 right-0 h-96 w-96 rounded-full bg-cyan-500/6 blur-[160px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 rounded-full bg-violet-500/6 blur-[140px]" />
+      <Container className="relative z-10">
+        <SectionHeading
+          eyebrow="Tooling"
+          title="Skills"
+          subtitle="A focused set of technologies for building secure, scalable SaaS."
+        />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skillCategories.map((cat, catIndex) => (
             <motion.div
@@ -36,12 +31,13 @@ export default function Skills({ skills }: { skills: Record<string, string[]> })
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 * catIndex, type: "spring", stiffness: 100 }}
-              className="group relative overflow-hidden rounded-2xl border border-zinc-800/50 bg-zinc-900/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/30 hover:bg-zinc-900/80 hover:shadow-[0_0_40px_rgba(34,211,238,0.08)]"
+              whileHover={{ y: -6 }}
+              className="card group relative overflow-hidden rounded-3xl p-6 transition-all hover:shadow-[0_0_60px_rgba(34,211,238,0.10)]"
             >
               <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-cyan-500/10 blur-2xl transition-opacity group-hover:opacity-100" />
               <div className="relative z-10">
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-lg">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-500/10 text-lg border border-cyan-500/15">
                     {cat.icon}
                   </span>
                   <h3 className="text-lg font-semibold text-cyan-400">{cat.title}</h3>
@@ -54,7 +50,7 @@ export default function Skills({ skills }: { skills: Record<string, string[]> })
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.02 * i }}
-                      className="inline-flex items-center rounded-lg border border-zinc-700/50 bg-zinc-800/80 px-3 py-1.5 text-sm text-zinc-300 transition-all duration-200 hover:border-cyan-500/40 hover:bg-cyan-500/10 hover:text-cyan-400 hover:shadow-[0_0_12px_rgba(34,211,238,0.15)]"
+                      className="inline-flex items-center rounded-xl border border-zinc-700/60 bg-zinc-950/30 px-3 py-1.5 text-sm font-medium text-zinc-200/90 transition-all duration-200 hover:border-cyan-500/35 hover:bg-cyan-500/10 hover:text-cyan-200 hover:shadow-[0_0_14px_rgba(34,211,238,0.14)]"
                     >
                       {skill}
                     </motion.span>
@@ -64,7 +60,7 @@ export default function Skills({ skills }: { skills: Record<string, string[]> })
             </motion.div>
           ))}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
