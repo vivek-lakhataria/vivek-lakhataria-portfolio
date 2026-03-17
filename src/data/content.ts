@@ -6,6 +6,10 @@ export const profile = {
   phone: "+91 8735018445",
   linkedin: "https://www.linkedin.com/in/vivek-lakhataria-44a296194/",
   github: "https://github.com/vivek-lakhataria",
+  cv: {
+    viewUrl: "https://drive.google.com/file/d/10myuudJbDFRt9pbcVfSmV1y7pnAUvqsP/view?usp=sharing",
+    downloadUrl: "https://drive.google.com/uc?export=download&id=10myuudJbDFRt9pbcVfSmV1y7pnAUvqsP",
+  },
   location: "India",
 };
 

@@ -140,6 +140,7 @@ body::after {
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
 }
@@ -162,6 +163,7 @@ body::after {
   filter: blur(20px);
   transition: opacity 0.3s;
   z-index: -1;
+  pointer-events: none;
 }
 .btn-glow:hover::after {
   opacity: 0.6;

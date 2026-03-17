@@ -10,6 +10,10 @@ export default function Contact({
     email: string;
     phone: string;
     linkedin: string;
+    cv: {
+      viewUrl: string;
+      downloadUrl: string;
+    };
   };
 }) {
   const links = [
@@ -28,6 +32,20 @@ export default function Contact({
       label: profile.phone,
     },
     {
+      href: profile.cv.downloadUrl,
+      icon: (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M12 16v-8m0 8l-3-3m3 3l3-3M7 20h10a2 2 0 002-2V7.5a2 2 0 00-.586-1.414l-2.5-2.5A2 2 0 0014.5 3H7a2 2 0 00-2 2v13a2 2 0 002 2z"
+        />
+      ),
+      label: "Download CV",
+      external: true,
+      download: true,
+    },
+    {
       href: profile.linkedin,
       icon: "linkedin",
       label: "LinkedIn",
@@ -37,8 +55,8 @@ export default function Contact({
 
   return (
     <section id="contact" className="relative py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(34,211,238,0.08),transparent)]" />
-      <div className="relative mx-auto max-w-6xl px-6">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(34,211,238,0.08),transparent)]" />
+      <div className="relative z-10 mx-auto max-w-6xl px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,13 +81,14 @@ export default function Contact({
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
+                download={link.download ? "" : undefined}
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.05 * i }}
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                className="flex items-center gap-3 rounded-xl border border-zinc-600 px-6 py-4 text-zinc-300 transition-all hover:border-cyan-500/50 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]"
+                className="flex cursor-pointer items-center gap-3 rounded-xl border border-zinc-600 px-6 py-4 text-zinc-300 transition-all hover:border-cyan-500/50 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] active:scale-[0.99]"
               >
                 {typeof link.icon === "string" ? (
                 <svg className="h-5 w-5 shrink-0" fill="currentColor" viewBox="0 0 24 24">
