@@ -1,80 +1,117 @@
 "use client";
 
 import { motion } from "framer-motion";
+import TiltCard from "./TiltCard";
 
-export default function Projects({
-  projects,
-}: {
-  projects: Array<{
-    name: string;
-    description: string;
-    tech: string[];
-    duration: string;
-    teamSize: number;
-    github: string;
-    highlights: string[];
-  }>;
-}) {
+type Project = {
+  name: string;
+  tagline: string;
+  description: string;
+  tech: string[];
+  duration: string;
+  teamSize: number;
+  role: string;
+  impact?: string;
+  highlights: string[];
+  featured?: boolean;
+};
+
+export default function Projects({ projects }: { projects: Project[] }) {
   return (
-    <section id="projects" className="relative py-24">
-      <div className="mx-auto max-w-6xl px-6">
+    <section id="projects" className="relative py-24 overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,rgba(34,211,238,0.03),transparent)]" />
+      <div className="relative mx-auto max-w-6xl px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 text-3xl font-bold text-zinc-100"
+          className="mb-4 text-3xl font-bold"
         >
-          Projects
+          <span className="gradient-text">Featured Projects</span>
         </motion.h2>
-        <div className="grid gap-6 md:grid-cols-2">
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12 text-zinc-500"
+        >
+          Building systems that scale
+        </motion.p>
+        <div className="space-y-8">
           {projects.map((project, i) => (
-            <motion.article
+            <motion.div
               key={project.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 * i }}
-              className="glass-strong group rounded-2xl p-6 transition-all hover:border-cyan-500/30"
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: 0.05 * i, duration: 0.5 }}
             >
-              <div className="mb-4 flex items-start justify-between">
-                <h3 className="text-xl font-semibold text-zinc-100 group-hover:text-cyan-400">
-                  {project.name}
-                </h3>
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-lg p-2 text-zinc-500 transition-colors hover:bg-zinc-800 hover:text-cyan-400"
-                  aria-label="GitHub"
-                >
-                  <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                  </svg>
-                </a>
-              </div>
-              <p className="mb-4 text-zinc-400">{project.description}</p>
-              <div className="mb-4 flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-md bg-cyan-500/10 px-2 py-0.5 text-xs text-cyan-400"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-              <p className="mb-3 text-sm text-zinc-500">
-                {project.duration} · Team of {project.teamSize}
-              </p>
-              <ul className="space-y-1 text-sm text-zinc-500">
-                {project.highlights.slice(0, 3).map((h, j) => (
-                  <li key={j} className="flex gap-2">
-                    <span className="text-cyan-400">→</span>
-                    {h}
-                  </li>
-                ))}
-              </ul>
-            </motion.article>
+              <TiltCard>
+                <div className="glass-strong glow-border group rounded-2xl p-8 transition-all hover:shadow-[0_0_40px_rgba(34,211,238,0.1)]">
+                  <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+                    <div>
+                      <div className="mb-1 flex items-center gap-3">
+                        <h3 className="text-xl font-semibold text-zinc-100 group-hover:text-cyan-400 transition-colors">
+                          {project.name}
+                        </h3>
+                        {project.featured && (
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            whileInView={{ scale: 1 }}
+                            viewport={{ once: true }}
+                            className="rounded-full bg-cyan-500/20 px-2.5 py-0.5 text-xs font-medium text-cyan-400 border border-cyan-500/30"
+                          >
+                            Featured
+                          </motion.span>
+                        )}
+                      </div>
+                      <p className="text-sm text-cyan-400/90">{project.tagline}</p>
+                    </div>
+                    <span className="rounded-md border border-zinc-600 px-3 py-1 text-xs text-zinc-500">
+                      {project.role}
+                    </span>
+                  </div>
+                  <p className="mb-4 text-zinc-400 leading-relaxed">{project.description}</p>
+                  {project.impact && (
+                    <p className="mb-4 text-sm font-medium text-cyan-400/90">
+                      Impact: {project.impact}
+                    </p>
+                  )}
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {project.tech.map((t, j) => (
+                      <motion.span
+                        key={t}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.02 * j }}
+                        className="skill-tag rounded-md bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-400 border border-cyan-500/20"
+                      >
+                        {t}
+                      </motion.span>
+                    ))}
+                  </div>
+                  <p className="mb-4 text-sm text-zinc-500">
+                    {project.duration} · Team of {project.teamSize}
+                  </p>
+                  <ul className="space-y-2 text-sm text-zinc-400">
+                    {project.highlights.map((h, j) => (
+                      <motion.li
+                        key={j}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.03 * j }}
+                        className="flex gap-2"
+                      >
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-cyan-400" />
+                        {h}
+                      </motion.li>
+                    ))}
+                  </ul>
+                </div>
+              </TiltCard>
+            </motion.div>
           ))}
         </div>
       </div>
