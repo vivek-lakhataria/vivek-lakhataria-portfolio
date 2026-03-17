@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vivek Lakhataria — Portfolio
 
-## Getting Started
+Modern portfolio built with **Next.js**, **Tailwind CSS**, and **Framer Motion**. Dark theme with glassmorphism design.
 
-First, run the development server:
+## Sections
+
+- **Hero** — Intro + CTA
+- **About Me** — Professional snapshot
+- **Skills** — Backend, Frontend, Architecture, Cloud, Messaging
+- **Experience** — Timeline (P99Soft, Kwiqwork, AlpsLogic)
+- **Projects** — Ironfleet, Skill India Digital, Deployment Tracker, and more
+- **Architecture Highlights** — Multi-tenant, CQRS, Identity, Real-time, Secure Storage
+- **System Design Thinking** — Core principles
+- **Problems I Solved** — Real-world solutions
+- **Contact** — Email, Phone, LinkedIn, GitHub
+
+## Tech Stack
+
+- Next.js 16
+- TypeScript
+- Tailwind CSS v4
+- Framer Motion
+
+## Development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment (Vercel)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Push to GitHub**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial portfolio"
+   git branch -M main
+   git remote add origin https://github.com/vivek-lakhataria/vivek-lakhataria-portfolio.git
+   git push -u origin main
+   ```
 
-## Learn More
+2. **Deploy on Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your GitHub repo
+   - Deploy (auto-detects Next.js)
 
-To learn more about Next.js, take a look at the following resources:
+3. **Custom Domain** (optional)
+   - Add `viveklakhataria.dev` in Vercel project settings
+   - Update DNS as instructed
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Architecture Diagram
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add your architecture diagram screenshot in the **Architecture Highlights** section for maximum impact. Recommended: multi-tenant flow, CQRS diagram, or service topology.
 
-## Deploy on Vercel
+## Customization
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Edit `src/data/content.ts` for all profile, experience, projects, and content
+- Update GitHub links per project in the content file
+- Add architecture diagram image in `public/` and reference in `ArchitectureHighlights.tsx`
