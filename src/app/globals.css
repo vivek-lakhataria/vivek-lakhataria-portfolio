@@ -65,13 +65,13 @@ body {
   overflow-x: hidden;
 }
 
-/* Base gradient — subtle depth */
+/* Base gradient Ã¢â‚¬â€ subtle depth */
 body {
   background: 
     linear-gradient(180deg, #0a0a0f 0%, #08080b 50%, #060608 100%);
 }
 
-/* Layered ambient light — softer for readability */
+/* Layered ambient light Ã¢â‚¬â€ softer for readability */
 body::before {
   content: "";
   position: fixed;
@@ -83,7 +83,7 @@ body::before {
   z-index: 0;
 }
 
-/* Subtle vignette only — no dot grid for better text readability */
+/* Subtle vignette only Ã¢â‚¬â€ no dot grid for better text readability */
 body::after {
   content: "";
   position: fixed;
@@ -93,13 +93,13 @@ body::after {
   z-index: 0;
 }
 
-/* Noise texture overlay — subtle for readability */
+/* Noise texture overlay Ã¢â‚¬â€ subtle for readability */
 .noise {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.12;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }
 
@@ -201,3 +201,103 @@ body::after {
   box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
   border-color: rgba(34, 211, 238, 0.3);
 }
+
+/* Senior-architect visual language */
+.hero-grid {
+  background-image: linear-gradient(rgba(103, 232, 249, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(103, 232, 249, 0.06) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 82%);
+}
+
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: #6ee7b7;
+  box-shadow: 0 0 0 4px rgba(110, 231, 183, 0.1);
+  animation: status-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  50% { box-shadow: 0 0 0 7px rgba(110, 231, 183, 0); }
+}
+
+.architect-panel {
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: linear-gradient(145deg, rgba(17, 24, 39, 0.9), rgba(8, 12, 20, 0.78));
+  box-shadow: inset 0 1px rgba(255,255,255,0.04), 0 28px 80px rgba(0,0,0,0.25);
+}
+
+.architecture-map {
+  border: 1px solid rgba(34, 211, 238, 0.16);
+  background: radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.09), transparent 34%), rgba(11, 16, 25, 0.7);
+}
+
+.architecture-arrow {
+  position: absolute;
+  top: 50%;
+  right: -1.2rem;
+  z-index: 1;
+  color: rgba(103, 232, 249, 0.65);
+  transform: translateY(-50%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
+
+/* Kinetic platform motif */
+.hero-orbit {
+  position: absolute;
+  right: -1.5rem;
+  top: -1.75rem;
+  width: 10.5rem;
+  height: 10.5rem;
+  opacity: 0.34;
+  pointer-events: none;
+}
+
+.hero-orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(103, 232, 249, 0.25);
+  border-radius: 999px;
+}
+
+.hero-orbit-ring-two {
+  inset: 1.4rem;
+  border-color: rgba(167, 139, 250, 0.35);
+}
+
+.orbit-node {
+  position: absolute;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  box-shadow: 0 0 18px currentColor;
+}
+
+.orbit-node-one { top: 1.1rem; left: 1.7rem; background: #67e8f9; color: #67e8f9; }
+.orbit-node-two { right: 0.5rem; bottom: 1.2rem; background: #c4b5fd; color: #c4b5fd; }
+
+.hero-orbit-core {
+  position: absolute;
+  inset: 3.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(103, 232, 249, 0.32);
+  border-radius: 999px;
+  background: rgba(8, 15, 26, 0.72);
+  box-shadow: 0 0 45px rgba(34, 211, 238, 0.15);
+  color: #a5f3fc;
+}
+
+.hero-orbit-core span { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.08em; }
+.hero-orbit-core small { margin-top: 0.15rem; font-family: var(--font-geist-mono), monospace; font-size: 0.45rem; letter-spacing: 0.16em; color: #64748b; }
+.orbit-label { position: absolute; font-family: var(--font-geist-mono), monospace; font-size: 0.5rem; letter-spacing: 0.18em; color: rgba(165, 243, 252, 0.8); }
+.orbit-label-top { right: 0; top: 1.5rem; }
+.orbit-label-bottom { bottom: 1.45rem; left: 0.3rem; }
+
+@media (max-width: 640px) { .hero-orbit { opacity: 0.18; transform: scale(0.78); transform-origin: top right; } }

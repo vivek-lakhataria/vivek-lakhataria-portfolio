@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vivek Lakhataria | Full-Stack Software Engineer",
+  title: "Vivek Lakhataria | Senior Full-Stack Engineer & Platform Architect",
   description:
-    "5+ years building multi-tenant SaaS platforms with .NET Core, React, and scalable cloud architectures. Specialized in CQRS, event-driven systems, and real-time communication.",
+    "Senior full-stack engineer and hands-on platform architect building secure multi-tenant SaaS, real-time collaboration, and Azure-native systems.",
 };
 
 export default function RootLayout({

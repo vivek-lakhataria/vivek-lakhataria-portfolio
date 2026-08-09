@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -9,9 +10,11 @@ import KeyDecisions from "@/components/KeyDecisions";
 import TechEvaluations from "@/components/TechEvaluations";
 import SystemDesign from "@/components/SystemDesign";
 import ProblemsSolved from "@/components/ProblemsSolved";
+import Education from "@/components/Education";
 import Contact from "@/components/Contact";
 import {
   profile,
+  leadershipMetrics,
   about,
   skills,
   experience,
@@ -21,14 +24,16 @@ import {
   techEvaluations,
   systemDesignThinking,
   problemsSolved,
+  education,
 } from "@/data/content";
 
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Navbar />
       <main className="relative z-10">
-        <Hero profile={profile} />
+        <Hero profile={profile} metrics={leadershipMetrics} />
         <About about={about} />
         <Skills skills={skills} />
         <Experience experience={experience} />
@@ -38,11 +43,10 @@ export default function Home() {
         <TechEvaluations evaluations={techEvaluations} />
         <SystemDesign principles={systemDesignThinking} />
         <ProblemsSolved problems={problemsSolved} />
+        <Education education={education} />
         <Contact profile={profile} />
       </main>
-      <footer className="relative border-t border-zinc-800/50 py-8 text-center text-sm text-zinc-500">
-        © {new Date().getFullYear()} Vivek Lakhataria · viveklakhataria.dev
-      </footer>
+      <footer className="relative border-t border-zinc-800/50 py-8 text-center text-sm text-zinc-500">{`© ${new Date().getFullYear()} Vivek Lakhataria · Senior Full-Stack Engineer & Platform Architect`}</footer>
     </>
   );
 }
