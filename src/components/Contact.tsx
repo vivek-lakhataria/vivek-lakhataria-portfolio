@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Reveal, RevealGroup } from "./Reveal";
 
 export default function Contact({
   profile,
@@ -57,35 +58,23 @@ export default function Contact({
     <section id="contact" className="relative py-24 overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_50%_at_50%_100%,rgba(34,211,238,0.08),transparent)]" />
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-3xl font-bold"
-        >
-          <span className="gradient-text">Get in Touch</span>
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="glass-strong glow-border rounded-2xl p-8 md:p-12"
-        >
+        <Reveal>
+          <h2 className="mb-12 text-3xl font-bold">
+            <span className="gradient-text">Get in Touch</span>
+          </h2>
+        </Reveal>
+        <Reveal className="glass-strong glow-border rounded-2xl p-8 md:p-12">
           <p className="mb-8 text-lg text-zinc-400">
             Open to new opportunities, architecture discussions, or collaboration. Let&apos;s connect.
           </p>
-          <div className="flex flex-wrap gap-6">
-            {links.map((link, i) => (
+          <RevealGroup className="flex flex-wrap gap-6">
+            {links.map((link) => (
               <motion.a
                 key={link.label}
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
                 download={link.download ? "" : undefined}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.05 * i }}
                 whileHover={{ scale: 1.03, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex cursor-pointer items-center gap-3 rounded-xl border border-zinc-600 px-6 py-4 text-zinc-300 transition-all hover:border-cyan-500/50 hover:text-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] active:scale-[0.99]"
@@ -102,8 +91,8 @@ export default function Contact({
                 {link.label}
               </motion.a>
             ))}
-          </div>
-        </motion.div>
+          </RevealGroup>
+        </Reveal>
       </div>
     </section>
   );

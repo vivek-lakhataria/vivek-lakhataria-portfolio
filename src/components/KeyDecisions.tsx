@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { RevealGroup } from "./Reveal";
 import { Container, Section, SectionHeading } from "./Section";
 
 type Decision = {
@@ -20,14 +20,10 @@ export default function KeyDecisions({ decisions }: { decisions: Decision[] }) {
           title="Decisions"
           subtitle="Clear trade-offs, documented intent, predictable outcomes."
         />
-        <div className="space-y-6">
-          {decisions.map((item, i) => (
-            <motion.div
+        <RevealGroup className="space-y-6">
+          {decisions.map((item) => (
+            <div
               key={item.decision}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 * i, type: "spring" }}
               className="card rounded-3xl border-l-4 border-l-cyan-500/40 p-6 transition-shadow hover:shadow-[0_0_40px_rgba(34,211,238,0.10)]"
             >
               <h3 className="mb-2 font-semibold text-zinc-100">{item.decision}</h3>
@@ -37,9 +33,9 @@ export default function KeyDecisions({ decisions }: { decisions: Decision[] }) {
                 <span className="text-zinc-200/90">{item.choice}</span>
               </div>
               <p className="text-zinc-300/80 text-sm leading-relaxed">{item.rationale}</p>
-            </motion.div>
+            </div>
           ))}
-        </div>
+        </RevealGroup>
       </Container>
     </Section>
   );

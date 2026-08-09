@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { RevealGroup } from "./Reveal";
 import { Container, Section, SectionHeading } from "./Section";
 
 const skillCategories = [
@@ -23,14 +24,10 @@ export default function Skills({ skills }: { skills: Record<string, string[]> })
           title="Skills"
           subtitle="A focused set of technologies for building secure, scalable SaaS."
         />
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {skillCategories.map((cat, catIndex) => (
+        <RevealGroup className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {skillCategories.map((cat) => (
             <motion.div
               key={cat.key}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 * catIndex, type: "spring", stiffness: 100 }}
               whileHover={{ y: -6 }}
               className="card group relative overflow-hidden rounded-3xl p-6 transition-all hover:shadow-[0_0_60px_rgba(34,211,238,0.10)]"
             >
@@ -42,24 +39,20 @@ export default function Skills({ skills }: { skills: Record<string, string[]> })
                   </span>
                   <h3 className="text-lg font-semibold text-cyan-400">{cat.title}</h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {(skills[cat.key] ?? []).map((skill, i) => (
-                    <motion.span
+                <RevealGroup className="flex flex-wrap gap-2">
+                  {(skills[cat.key] ?? []).map((skill) => (
+                    <span
                       key={skill}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.02 * i }}
                       className="inline-flex items-center rounded-xl border border-zinc-700/60 bg-zinc-950/30 px-3 py-1.5 text-sm font-medium text-zinc-200/90 transition-all duration-200 hover:border-cyan-500/35 hover:bg-cyan-500/10 hover:text-cyan-200 hover:shadow-[0_0_14px_rgba(34,211,238,0.14)]"
                     >
                       {skill}
-                    </motion.span>
+                    </span>
                   ))}
-                </div>
+                </RevealGroup>
               </div>
             </motion.div>
           ))}
-        </div>
+        </RevealGroup>
       </Container>
     </Section>
   );

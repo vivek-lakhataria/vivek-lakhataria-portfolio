@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Reveal, RevealGroup } from "./Reveal";
 
 export default function ProblemsSolved({
   problems,
@@ -11,22 +12,15 @@ export default function ProblemsSolved({
     <section id="problems" className="relative py-24 overflow-hidden">
       <div className="absolute left-1/4 bottom-0 h-64 w-64 rounded-full bg-rose-500/5 blur-[100px]" />
       <div className="relative mx-auto max-w-6xl px-6">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 text-3xl font-bold"
-        >
-          <span className="gradient-text">Problems I Solved</span>
-        </motion.h2>
-        <div className="space-y-6">
-          {problems.map((item, i) => (
+        <Reveal>
+          <h2 className="mb-12 text-3xl font-bold">
+            <span className="gradient-text">Problems I Solved</span>
+          </h2>
+        </Reveal>
+        <RevealGroup className="space-y-6">
+          {problems.map((item) => (
             <motion.div
               key={item.problem}
-              initial={{ opacity: 0, x: i % 2 === 0 ? -25 : 25 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 * i, type: "spring" }}
               whileHover={{ scale: 1.01 }}
               className="glass rounded-xl p-6 transition-shadow hover:shadow-[0_0_25px_rgba(34,211,238,0.06)]"
             >
@@ -36,7 +30,7 @@ export default function ProblemsSolved({
               </p>
             </motion.div>
           ))}
-        </div>
+        </RevealGroup>
       </div>
     </section>
   );

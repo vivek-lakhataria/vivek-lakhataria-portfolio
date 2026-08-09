@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { RevealGroup } from "./Reveal";
 import { Container, Section, SectionHeading } from "./Section";
 
 type Evaluation = {
@@ -19,14 +20,10 @@ export default function TechEvaluations({ evaluations }: { evaluations: Evaluati
           title="Tech Evaluations"
           subtitle="Short loops, measurable criteria, confident choices."
         />
-        <div className="grid gap-6 md:grid-cols-2">
-          {evaluations.map((item, i) => (
+        <RevealGroup className="grid gap-6 md:grid-cols-2">
+          {evaluations.map((item) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 * i }}
               whileHover={{ y: -4 }}
               className="card rounded-3xl p-6 transition-all hover:shadow-[0_0_40px_rgba(34,211,238,0.10)]"
             >
@@ -35,7 +32,7 @@ export default function TechEvaluations({ evaluations }: { evaluations: Evaluati
               <p className="text-sm text-zinc-300/70">{item.learnings}</p>
             </motion.div>
           ))}
-        </div>
+        </RevealGroup>
       </Container>
     </Section>
   );
