@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import IntroSplash from "@/components/IntroSplash";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#08080b] text-zinc-100`}
       >
+        <IntroSplash />
         <div className="noise" aria-hidden="true" />
         {children}
       </body>
