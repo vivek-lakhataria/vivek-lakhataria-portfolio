@@ -1,4 +1,4 @@
-# Vivek Lakhataria — Portfolio
+Vivek Lakhataria — Portfolio
 
 Modern portfolio built with **Next.js**, **Tailwind CSS**, and **Framer Motion**. Dark theme with glassmorphism design.
 
